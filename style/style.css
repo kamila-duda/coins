@@ -1,0 +1,343 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+.container {
+  padding: 0px;
+  margin: 0px;
+  overflow-x: hidden;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0143a7), to(#d0dcf7));
+  background-image: linear-gradient(#0143a7, #d0dcf7);
+  font-family: 'Lobster', cursive;
+  font-size: 20px;
+  min-height: 100vh;
+}
+
+.introduction {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.game__title {
+  padding-left: 30px;
+  text-shadow: 3px 1px 5px #dccc85;
+}
+
+.game__level {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.money {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 50%;
+  padding: 10px;
+}
+
+.command {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  -webkit-transition: opacity 2s;
+  transition: opacity 2s;
+  font-size: 18px;
+}
+
+.amount__container {
+  margin-right: 20px;
+  font-size: 30px;
+}
+
+.game__container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.coins__container {
+  width: 25vw;
+  height: 20vw;
+  min-height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+.tile {
+  position: relative;
+  width: 6vw;
+  height: 6vw;
+  -webkit-animation: showCoins 3s;
+          animation: showCoins 3s;
+}
+
+@-webkit-keyframes showCoins {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showCoins {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.coin {
+  width: 4vw;
+  height: 4vw;
+  margin: 5px;
+  z-index: 100;
+  position: absolute;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.coin:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.pig {
+  width: 20vw;
+  height: 20vw;
+  padding: 2vw;
+  border-radius: 50%;
+  position: relative;
+  top: 20%;
+  right: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.shadow {
+  -webkit-box-shadow: 0px 0px 25px grey;
+          box-shadow: 0px 0px 25px grey;
+}
+
+.shadow2:hover {
+  -webkit-box-shadow: 0px 0px 25px grey;
+          box-shadow: 0px 0px 25px grey;
+}
+
+.pig__body {
+  position: absolute;
+  width: 253%;
+  height: 151%;
+  top: -21%;
+  left: -117%;
+  z-index: -1;
+  background-image: url(../images/pig.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.pig__bubble {
+  position: absolute;
+  left: -4%;
+  top: 74%;
+  width: 23vw;
+  height: 10vw;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background: #f1e1e1;
+  border-radius: 53px;
+  opacity: 0;
+}
+
+.pig__bubble::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 0 2vw 2vw;
+  border-color: #f1e1e1 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  top: -20%;
+  left: 55%;
+}
+
+.animation {
+  -webkit-animation: display 4s;
+          animation: display 4s;
+}
+
+@-webkit-keyframes display {
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+@keyframes display {
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+.button, .check__button, .easy__button, .medium__button, .hard__button {
+  cursor: pointer;
+  width: 80px;
+  height: 50px;
+  border-radius: 50%;
+  font-weight: bold;
+  outline: none;
+}
+
+.check__button {
+  width: 150px;
+  height: 70px;
+  font-size: 25px;
+  font-family: 'Lobster', cursive;
+  margin-right: 30px;
+  opacity: 0;
+  -webkit-transition: opacity 2s;
+  transition: opacity 2s;
+}
+
+.check__button:hover {
+  border-top: 2px solid #ffc400;
+  border-left: 2px solid #ffc400;
+  background-color: #ffc400;
+}
+
+.easy__button {
+  background-color: #1bda1b;
+}
+
+.easy__button:hover {
+  border: 2px solid #050e8d;
+}
+
+.medium__button {
+  background-color: #faf601;
+}
+
+.medium__button:hover {
+  border: 2px solid #050e8d;
+}
+
+.hard__button {
+  background-color: #ff0000;
+}
+
+.hard__button:hover {
+  border: 2px solid #050e8d;
+}
+
+.prompt__button {
+  width: 7vw;
+  height: 7vw;
+  cursor: pointer;
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  display: none;
+}
+
+.easy {
+  display: none;
+}
+
+.medium {
+  display: none;
+}
+
+.hard {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */

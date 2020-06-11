@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tytuł strony</title>
+
+    <meta name="description" content="Opis w Google">
+    <meta name="keywords" content="słowa, kluczowe, wypisane, po, porzecinku">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body class="container">
+    <header class="introduction">
+        <h1 class="game__title">Świnka Skarbonka</h1>
+            <input class="check__button" type="button" value="Sprawdź">
+    </header>
+    <main class="game__container">
+        <section class="money">
+            <div class="command">
+                <p>Włóż do świnki tyle monet, żeby uzbierała się podana
+                    kwota:</p>
+                <div class="amount__container"></div>
+            </div>
+            <div class="coins__container" id="coins__container">
+                    <p class="gameInfo">Cześć :) jestem Świnka Skarbonka, chrum chrum, chciałabym zjeść trochę monet. Wybierz poziom, a następnie wrzucaj do mojego brzuszka tyle monet, aby ich suma zgadzała się z podaną kwotą. Powodzenia!
+                    </p>
+                <div class="js-1gr tile hard">
+                    <img src="images/0.01zl.png" class="coin" value="0.01" alt="1gr">
+                    <img src="images/0.01zl.png" class="coin" value="0.01" alt="1gr">
+                    <img src="images/0.01zl.png" class="coin" value="0.01" alt="1gr">
+                    <img src="images/0.01zl.png" class="coin" value="0.01" alt="1gr">
+                    <img src="images/0.01zl.png" class="coin" value="0.01" alt="1gr">
+                    <img src="images/0.01zl.png" class="coin" value="0.01" alt="1gr">
+                </div>
+                <div class="js-2gr tile hard">
+                    <img src="images/0.02zl.png" class="coin" value="0.02" alt="2gr">
+                    <img src="images/0.02zl.png" class="coin" value="0.02" alt="2gr">
+                    <img src="images/0.02zl.png" class="coin" value="0.02" alt="2gr">
+                    <img src="images/0.02zl.png" class="coin" value="0.02" alt="2gr">
+                    <img src="images/0.02zl.png" class="coin" value="0.02" alt="2gr">
+                    <img src="images/0.02zl.png" class="coin" value="0.02" alt="2gr">
+                </div>
+                <div class="js-5gr tile hard">
+                    <img src="images/0.05zl.png" class="coin" value="0.05" alt="5gr">
+                    <img src="images/0.05zl.png" class="coin" value="0.05" alt="5gr">
+                    <img src="images/0.05zl.png" class="coin" value="0.05" alt="5gr">
+                    <img src="images/0.05zl.png" class="coin" value="0.05" alt="5gr">
+                    <img src="images/0.05zl.png" class="coin" value="0.05" alt="5gr">
+                    <img src="images/0.05zl.png" class="coin" value="0.05" alt="5gr">
+                </div>
+                <div class="js-10gr tile medium">
+                    <img src="images/0.1zl.png" class="coin" value="0.1" alt="10gr">
+                    <img src="images/0.1zl.png" class="coin" value="0.1" alt="10gr">
+                    <img src="images/0.1zl.png" class="coin" value="0.1" alt="10gr">
+                    <img src="images/0.1zl.png" class="coin" value="0.1" alt="10gr">
+                    <img src="images/0.1zl.png" class="coin" value="0.1" alt="10gr">
+                    <img src="images/0.1zl.png" class="coin" value="0.1" alt="10gr">
+                </div>
+                <div class="js-20gr tile medium">
+                    <img src="images/0.2zl.png" class="coin" value="0.2" alt="20gr">
+                    <img src="images/0.2zl.png" class="coin" value="0.2" alt="20gr">
+                    <img src="images/0.2zl.png" class="coin" value="0.2" alt="20gr">
+                    <img src="images/0.2zl.png" class="coin" value="0.2" alt="20gr">
+                    <img src="images/0.2zl.png" class="coin" value="0.2" alt="20gr">
+                    <img src="images/0.2zl.png" class="coin" value="0.2" alt="20gr">
+                </div>
+                <div class="js-50gr tile medium">
+                    <img src="images/0.5zl.png" class="coin" value="0.5" alt="50gr">
+                    <img src="images/0.5zl.png" class="coin" value="0.5" alt="50gr">
+                    <img src="images/0.5zl.png" class="coin" value="0.5" alt="50gr">
+                    <img src="images/0.5zl.png" class="coin" value="0.5" alt="50gr">
+                    <img src="images/0.5zl.png" class="coin" value="0.5" alt="50gr">
+                    <img src="images/0.5zl.png" class="coin" value="0.5" alt="50gr">
+                </div>
+                <div class="js-1zl tile easy">
+                    <img src="images/1zl.png" class="coin" value="1" alt="1zł">
+                    <img src="images/1zl.png" class="coin" value="1" alt="1zł">
+                    <img src="images/1zl.png" class="coin" value="1" alt="1zł">
+                    <img src="images/1zl.png" class="coin" value="1" alt="1zł">
+                    <img src="images/1zl.png" class="coin" value="1" alt="1zł">
+                    <img src="images/1zl.png" class="coin" value="1" alt="1zł">
+                </div>
+                <div class="js-2zl tile easy">
+                    <img src="images/2zl.png" class="coin" value="2" alt="2zł">
+                    <img src="images/2zl.png" class="coin" value="2" alt="2zł">
+                    <img src="images/2zl.png" class="coin" value="2" alt="2zł">
+                    <img src="images/2zl.png" class="coin" value="2" alt="2zł">
+                    <img src="images/2zl.png" class="coin" value="2" alt="2zł">
+                    <img src="images/2zl.png" class="coin" value="2" alt="2zł">
+                </div>
+                <div class="js-5zl tile easy">
+                    <img src="images/5zl.png" class="coin" value="5" alt="5zł">
+                    <img src="images/5zl.png" class="coin" value="5" alt="5zł">
+                    <img src="images/5zl.png" class="coin" value="5" alt="5zł">
+                    <img src="images/5zl.png" class="coin" value="5" alt="5zł">
+                    <img src="images/5zl.png" class="coin" value="5" alt="5zł">
+                    <img src="images/5zl.png" class="coin" value="5" alt="5zł">
+                </div>
+
+            </div>
+            <div class="game__message"></div>
+            <div class="game__level">
+                <p>Wybierz poziom trudności:</p>
+                <div>
+                    <input class="easy__button" type="button" value="Łatwy">
+                    <input class="medium__button" type="button" value="Średni">
+                    <input class="hard__button" type="button" value="Trudny">
+                </div>
+            </div>
+        </section>
+        <section class="pig" id="pig">
+            <img src="images/zarowka.png" class="prompt__button" alt="żarówka/podpowiedź">
+            <div class="pig__body">
+
+                <div class="pig__bubble"></div>
+            </div>
+        </section>
+        
+    </main>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
