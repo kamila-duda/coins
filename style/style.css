@@ -159,9 +159,11 @@ html {
   height: 4vw;
   margin: 5px;
   z-index: 100;
-  position: absolute;
   cursor: -webkit-grab;
   cursor: grab;
+  -ms-touch-action: none;
+      touch-action: none;
+  position: fixed;
 }
 
 .coin:hover {
@@ -197,6 +199,11 @@ html {
 .shadow2:hover {
   -webkit-box-shadow: 0px 0px 25px grey;
           box-shadow: 0px 0px 25px grey;
+}
+
+.alternativeText {
+  background-image: url(../images/alternative.png);
+  background-size: contain;
 }
 
 .pig__body {

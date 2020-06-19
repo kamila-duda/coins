@@ -40,6 +40,7 @@ function round(n, k) {
 };
 //sprawdzam czy ekran jest dotykowy
 if (window.matchMedia("(pointer: coarse)").matches) {
+    
     document.body.addEventListener('touchmove', function (event) {
         event.preventDefault();
     }, false);
@@ -160,7 +161,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             pig.classList.add("shadow2");
             let data = ev.dataTransfer.getData("money");//transferowana moneta
             let imgs = document.getElementById(data);//uchwyt do monety
-            imgs.style.position = "unset";
+            imgs.style.position = "relative";
             let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
             this.appendChild(document.getElementById(data));
             pigArray.push(imgValue);
@@ -184,7 +185,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
         let data = ev.dataTransfer.getData("money");
         let imgs = document.getElementById(data);//uchwyt do monety
         let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
-        imgs.style.position = "absolute";
+        imgs.style.position = "fixed";
         let target = "";
         if (imgValue == 0.01) {
             target = document.querySelector(".js-1gr");
@@ -252,7 +253,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                         } else if (imgValue == 5) {
                             target = document.querySelector(".js-5zl");
                         };
-                        img.style.position = "absolute";
+                        img.style.position = "fixed";
                         target.appendChild(img);
                     });
                     message = "";
