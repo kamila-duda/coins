@@ -40,7 +40,7 @@ function round(n, k) {
 };
 //sprawdzam czy ekran jest dotykowy
 if (window.matchMedia("(pointer: coarse)").matches) {
-    
+    pig.insertAdjacentElement("afterend", document.querySelector(".game__level"));
     document.body.addEventListener('touchmove', function (event) {
         event.preventDefault();
     }, false);
@@ -49,6 +49,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
     money.forEach(function (oneCoin) {
         oneCoin.addEventListener("touchstart", function (ev) {
             ev.preventDefault();
+            oneCoin.style.position="fixed";
             pig.classList.add("shadow");
             pig.style.borderStyle = "dotted";
             pig.classList.add("alternativeText");
@@ -71,9 +72,14 @@ if (window.matchMedia("(pointer: coarse)").matches) {
     let yEnd = pigPosition.height + yStart;
     money.forEach(function (oneCoin) {
         oneCoin.addEventListener("touchend", function (ev) {
+            let targetPosition = ev.target.getBoundingClientRect();
             //ev.target to pozycja monety, a te drugie to diva pig
-            if ((ev.target.offsetLeft > xStart) && (ev.target.offsetLeft < xEnd) && (ev.target.offsetTop > yStart) && (ev.target.offsetTop < yEnd)) {
+            if ((targetPosition.left > xStart) && (targetPosition.left < xEnd) && (targetPosition.top > yStart) && (targetPosition.top < yEnd)) {
                 oneCoin.classList.add("inPig");
+                oneCoin.style.position="relative";
+                oneCoin.style.left="unset";
+                oneCoin.style.top="unset";
+                pig.appendChild(oneCoin);
             }
         });
     });
@@ -83,7 +89,9 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             let suma = 0;
             let moneyInPig = document.querySelectorAll(".inPig");
             moneyInPig.forEach(function (inPig) {
-                if ((inPig.offsetLeft > xStart) && (inPig.offsetLeft < xEnd) && (inPig.offsetTop > yStart) && (inPig.offsetTop < yEnd)) {
+                let moneyPosition = inPig.getBoundingClientRect();
+
+                if ((moneyPosition.left > xStart) && (moneyPosition.left < xEnd) && (moneyPosition.top > yStart) && (moneyPosition.top < yEnd)) {
                     pigArray.push(inPig.getAttribute("value"));
                 }
             })
@@ -125,7 +133,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                         } else if (imgValue == 5) {
                             target = document.querySelector(".js-5zl");
                         };
-                        img.style.position = "fixed";
+                        img.style.position = "absolute";
                         target.appendChild(img);
                     });
                     message = "";
@@ -253,7 +261,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                         } else if (imgValue == 5) {
                             target = document.querySelector(".js-5zl");
                         };
-                        img.style.position = "fixed";
+                        img.style.position = "absolute";
                         target.appendChild(img);
                     });
                     message = "";
