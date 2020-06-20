@@ -19,6 +19,9 @@ html {
   font-family: 'Lobster', cursive;
   font-size: 20px;
   min-height: 100vh;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
 .game__introduction {
@@ -150,6 +153,10 @@ html {
           align-items: center;
 }
 
+.gameInfo {
+  font-size: 15px;
+}
+
 @media only screen and (max-width: 600px) {
   .main {
     display: unset;
@@ -276,6 +283,7 @@ html {
     height: 35vw;
     left: 48%;
     right: unset;
+    margin-bottom: 40px;
   }
 }
 
@@ -314,6 +322,7 @@ html {
   width: 23vw;
   height: 10vw;
   padding: 10px;
+  font-size: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -348,7 +357,7 @@ html {
     width: 30vw;
     height: 14vw;
     padding: 5px;
-    font-size: 12px;
+    font-size: 10px;
   }
   .pig__bubble::after {
     content: "";
@@ -391,7 +400,7 @@ html {
 
 @media only screen and (max-width: 600px) {
   .button, .game__checkButton, .game__easyButton, .game__mediumButton, .game__hardButton {
-    width: 40px;
+    width: 45px;
     height: 25px;
   }
 }
@@ -408,9 +417,9 @@ html {
 }
 
 .game__checkButton:hover {
-  border-top: 2px solid #ffc400;
-  border-left: 2px solid #ffc400;
-  background-color: #ffc400;
+  border-top: 2px solid #ffe4c4;
+  border-left: 2px solid #ffe4c4;
+  background-color: #ffe4c4;
 }
 
 @media only screen and (max-width: 600px) {
@@ -476,9 +485,13 @@ html {
 }
 
 .footer {
-  position: relative;
+  position: fixed;
+  right: 0;
   bottom: 0;
+  left: 0;
   font-size: 10px;
   text-align: center;
+  background-color: #ffe4c4;
+  padding: 2px;
 }
 /*# sourceMappingURL=style.css.map */

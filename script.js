@@ -317,6 +317,11 @@ easyButton.addEventListener("click", function () {
     command.style.opacity = "1";
     checkButton.style.opacity = "1";
     drawTheAmount(easyArray);
+    image.forEach(function (img) {
+        img.style.left = "unset";
+        img.style.top = "unset";
+        img.style.position="absolute";
+    });
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
         easyBlock.offsetHeight;
@@ -338,6 +343,11 @@ mediumButton.addEventListener("click", function () {
     gameInfo.style.display = "none";
     checkButton.style.opacity = "1";
     drawTheAmount(mediumArray);
+    image.forEach(function (img) {
+        img.style.left = "unset";
+        img.style.top = "unset";
+        img.style.position="absolute";
+    });
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
         easyBlock.offsetHeight;
@@ -360,6 +370,11 @@ hardButton.addEventListener("click", function () {
     checkButton.style.opacity = "1";
     command.style.opacity = "1";    
     drawTheAmount(hardArray);
+    image.forEach(function (img) {
+        img.style.left = "unset";
+        img.style.top = "unset";
+        img.style.position="absolute";
+    });
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
         easyBlock.offsetHeight;
