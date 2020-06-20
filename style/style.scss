@@ -6,7 +6,7 @@ html {
   *::after {
     box-sizing: inherit;
   }
-.container {
+.game__container {
     padding: 0px;
     margin: 0px;
     overflow-x: hidden;
@@ -15,14 +15,14 @@ html {
     font-size: 20px;
     min-height: 100vh;;
 }
-.introduction {
+.game__introduction {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
 }
 @media only screen and (max-width: 600px) {
-    .introduction {
+    .game__introduction {
         flex-direction: column;
     }
   }
@@ -33,7 +33,7 @@ html {
 @media only screen and (max-width: 600px) {
     .game__title{
         padding: 5px;
-        font-size: 30px;
+        font-size: 35px;
     }
   }
 .game__level{
@@ -62,7 +62,7 @@ html {
         max-width: 100%;
     }
   }
-.command{
+.game__command{
     width: 100%;
     height: 100px;
     display: flex;
@@ -73,21 +73,22 @@ html {
     font-size: 18px;
 }
 @media only screen and (max-width: 600px) {
-    .command{
-        max-height: 50px;
-        font-size: 10px;
+    .game__command{
+        max-height: 30px;
+        font-size: 12px;
     }
   }
-.amount__container {
+.game__amount {
     margin-right: 20px;
     font-size: 30px;
 }
 @media only screen and (max-width: 600px) {
-    .amount__container {
+    .game__amount {
         font-size: 20px;
+        margin-right: 0px;
     }
   }
-.game__container {
+.main {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -95,11 +96,12 @@ html {
     align-items: center;
 }
 @media only screen and (max-width: 600px) {
-    .game__container {
+    .main {
       display: unset;
     }
     .gameInfo{
         font-size: 10px;
+        text-align: justify;
     }
   }
 .coins__container {
@@ -120,12 +122,18 @@ html {
         flex-direction: row;
     }
   }
-.tile {
+.coins__tile {
     position: relative;
     width: 6vw;
     height: 6vw;
     animation: showCoins 3s;
 }
+@media only screen and (max-width: 600px) {
+    .coins__tile {
+        width: 10vw;
+        height: 10vw;
+    }
+  }
 @keyframes showCoins{
     0%{opacity:0;}
     100%{opacity:1;}
@@ -142,6 +150,12 @@ html {
 .coin:hover{
     transform: scale(1.1);
 }
+@media only screen and (max-width: 600px) {
+    .coin {
+        width: 9vw;
+        height: 9vw;
+    }
+  }
 .pig {
     width: 20vw;
     height: 20vw;
@@ -157,8 +171,8 @@ html {
 }
 @media only screen and (max-width: 600px) {
     .pig {
-        width: 26vw;
-        height: 26vw;
+        width: 35vw;
+        height: 35vw;
         left: 48%;
         right: unset;
     }
@@ -214,6 +228,20 @@ html {
         left: 55%;
     }
 }
+@media only screen and (max-width: 600px) {
+    .pig__bubble {
+        left: 2%;
+        width: 30vw;
+        height: 14vw;
+        padding: 5px;
+        font-size: 12px;
+        &::after {
+            content: "";
+            top: -14%;
+            left: 60%;
+        }
+    }
+  }
 .animation {
     animation: display 4s;
 }
@@ -239,7 +267,7 @@ html {
         height: 25px;
     }
   }
-.check__button {
+.game__checkButton {
     @extend .button;
     width: 150px;
     height: 70px;
@@ -254,32 +282,32 @@ html {
         background-color: #ffc400;
     }}
     @media only screen and (max-width: 600px) {
-        .check__button {
-            width: 50px;
+        .game__checkButton {
+            width: 60px;
             height: 30px;
             font-size: 10px;
             margin-right: unset;
         }
       }
-.easy__button{
+.game__easyButton{
     @extend .button;
     background-color: #1bda1b;
 &:hover{
     border: 2px solid #050e8d;
 }}
-.medium__button{
+.game__mediumButton{
     @extend .button;
     background-color: #faf601;
     &:hover{
         border: 2px solid #050e8d;
     }}
-.hard__button{
+.game__hardButton{
     @extend .button;
     background-color: #ff0000;
     &:hover{
         border: 2px solid #050e8d;
     }}
-.prompt__button{
+.pig__promptButton{
     width: 7vw;
     height: 7vw;
     cursor: pointer;
@@ -287,6 +315,12 @@ html {
     top:-50%;
     left: -70%;
     display: none;
+}
+@media only screen and (max-width: 600px){
+    .pig__promptButton{
+        top: -35%;
+    left: -63%;
+    }
 }
 .easy{
     display: none;
@@ -296,4 +330,10 @@ html {
 }
 .hard{
     display: none;
+}
+.footer{
+    position: relative;
+    bottom: 0;
+    font-size: 10px;
+    text-align: center;
 }
