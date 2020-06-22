@@ -24,6 +24,49 @@ html {
   height: min-content;
 }
 
+.button, .game__checkButton, .game__easyButton, .game__mediumButton, .game__hardButton {
+  cursor: pointer;
+  width: 80px;
+  height: 50px;
+  border-radius: 50%;
+  font-weight: bold;
+  outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .button, .game__checkButton, .game__easyButton, .game__mediumButton, .game__hardButton {
+    width: 45px;
+    height: 25px;
+  }
+}
+
+.game__checkButton {
+  width: 150px;
+  height: 60px;
+  font-size: 25px;
+  font-family: 'Lobster', cursive;
+  margin-right: 30px;
+  opacity: 0;
+  -webkit-transition: opacity 2s;
+  transition: opacity 2s;
+}
+
+.game__checkButton:hover {
+  border-top: 2px solid #ffe4c4;
+  border-left: 2px solid #ffe4c4;
+  background-color: #ffe4c4;
+}
+
+@media only screen and (max-width: 600px) {
+  .game__checkButton {
+    width: 60px;
+    height: 30px;
+    font-size: 10px;
+    margin-right: unset;
+    margin-top: 10px;
+  }
+}
+
 .game__introduction {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -75,6 +118,7 @@ html {
   .game__level {
     font-size: 10px;
     margin-top: 50px;
+    padding-right: 0px;
   }
 }
 
@@ -95,7 +139,6 @@ html {
 
 @media only screen and (max-width: 600px) {
   .money {
-    display: unset;
     max-width: 100%;
   }
 }
@@ -121,8 +164,10 @@ html {
 
 @media only screen and (max-width: 600px) {
   .game__command {
-    max-height: 30px;
-    font-size: 12px;
+    max-height: -webkit-min-content;
+    max-height: -moz-min-content;
+    max-height: min-content;
+    font-size: 14px;
   }
 }
 
@@ -357,7 +402,7 @@ html {
     width: 30vw;
     height: 14vw;
     padding: 5px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .pig__bubble::after {
     content: "";
@@ -386,48 +431,6 @@ html {
   }
   90% {
     opacity: 1;
-  }
-}
-
-.button, .game__checkButton, .game__easyButton, .game__mediumButton, .game__hardButton {
-  cursor: pointer;
-  width: 80px;
-  height: 50px;
-  border-radius: 50%;
-  font-weight: bold;
-  outline: none;
-}
-
-@media only screen and (max-width: 600px) {
-  .button, .game__checkButton, .game__easyButton, .game__mediumButton, .game__hardButton {
-    width: 45px;
-    height: 25px;
-  }
-}
-
-.game__checkButton {
-  width: 150px;
-  height: 70px;
-  font-size: 25px;
-  font-family: 'Lobster', cursive;
-  margin-right: 30px;
-  opacity: 0;
-  -webkit-transition: opacity 2s;
-  transition: opacity 2s;
-}
-
-.game__checkButton:hover {
-  border-top: 2px solid #ffe4c4;
-  border-left: 2px solid #ffe4c4;
-  background-color: #ffe4c4;
-}
-
-@media only screen and (max-width: 600px) {
-  .game__checkButton {
-    width: 60px;
-    height: 30px;
-    font-size: 10px;
-    margin-right: unset;
   }
 }
 

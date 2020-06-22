@@ -16,19 +16,17 @@ let easyTile = document.querySelectorAll(".easy");
 let mediumTile = document.querySelectorAll(".medium");
 let hardTile = document.querySelectorAll(".hard");
 let pigArray = [];
-const easyArray = ["3", "6", "7", "8", "9", "12", "13", "15", "16", "18", "25"];
-const mediumArray = ["0.80", "1.20", "2.40", "3.50", "4.20", "5.50", "6.20", "7.70", "8.10", "11.60", "13.40", "15.80", "16.30", "18.90"];
-const hardArray = ["0.23", "0.59", "1.19", "1.53", "2.21", "3.33", "4.19", "6.29", "8.11", "15.47", "16.55", "18.15"];
-const pigGoodText = ["Brawo!", "Znakomicie!", "Tak trzymaj!", "Dla Ciebie to pestka :)"];
-let x = [];
+const pigGoodText = ["Brawo!", "Super :)", "Znakomicie!", "Tak trzymaj!", "Dla Ciebie to pestka :)"];
+let x = 40;
+let y = 1;
 for (let i = 0; i < image.length; i++) {//tworzenie id monet
     image[i].id = i;
     image[i].setAttribute("dragaable", "true");
 };
 
-function drawTheAmount(x) {
-    let index = Math.floor(Math.random() * (x.length));
-    amountContainer.innerHTML = x[index] + "zł";
+function drawTheAmount(x, y) {
+    let number = Math.floor((Math.random() * (x)) + 1) / y;
+    amountContainer.innerHTML = number.toFixed(2) + " zł";
     message.innerText = "";
     setTimeout(function () {
         promptButton.style.display = "unset";
@@ -40,25 +38,25 @@ function round(n, k) {
 };
 //sprawdzam czy ekran jest dotykowy
 if (window.matchMedia("(pointer: coarse)").matches) {
-    pig.insertAdjacentElement("afterend", document.querySelector(".game__level"));
-    // document.body.addEventListener('touchmove', function (event) {
-    //     event.preventDefault();
-    // }, false);
+    if (window.matchMedia('(max-device-width: 600px)').matches) {
+        pig.insertAdjacentElement("afterend", document.querySelector(".game__level"));
+        amountContainer.insertAdjacentElement("afterend", checkButton);
+    };
 
     let money = document.querySelectorAll(".coin");
     money.forEach(function (oneCoin) {
-            oneCoin.addEventListener("touchstart", function (ev) {
-            if(ev.cancelable) {
+        oneCoin.addEventListener("touchstart", function (ev) {
+            if (ev.cancelable) {
                 ev.preventDefault();
-                oneCoin.style.position="fixed";
-                oneCoin.style.width="9vw";
-                oneCoin.style.height="9vw";
+                oneCoin.style.position = "fixed";
+                oneCoin.style.width = "9vw";
+                oneCoin.style.height = "9vw";
                 pig.classList.add("shadow");
                 pig.style.borderStyle = "dotted";
                 pig.classList.add("alternativeText");
-           }
+            }
         });
-        oneCoin.addEventListener("touchcancel", function (ev) {alert(ev);}, false);
+        oneCoin.addEventListener("touchcancel", function (ev) { alert(ev); }, false);
     });
     money.forEach(function (oneCoin) {
         oneCoin.addEventListener("touchmove", function (ev) {
@@ -80,13 +78,22 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             let targetPosition = ev.target.getBoundingClientRect();
             //ev.target to pozycja monety, a te drugie to diva pig
             if ((targetPosition.left > xStart) && (targetPosition.left < xEnd) && (targetPosition.top > yStart) && (targetPosition.top < yEnd)) {
-                oneCoin.classList.add("inPig");
-                oneCoin.style.position="relative";
-                oneCoin.style.left="unset";
-                oneCoin.style.top="unset";
-                oneCoin.style.width="5vw";
-                oneCoin.style.height="5vw";
-                pig.appendChild(oneCoin);
+                let howManyChild = pig.childElementCount;
+                if (howManyChild < 18) {
+                    oneCoin.classList.add("inPig");
+                    oneCoin.style.position = "relative";
+                    oneCoin.style.left = "unset";
+                    oneCoin.style.top = "unset";
+                    oneCoin.style.width = "5vw";
+                    oneCoin.style.height = "5vw";
+                    pig.appendChild(oneCoin);
+                } else {
+                    message = "Mam pełny brzuszek. Użyj mniej monet";
+                    bubble.innerText = message;
+                    bubble.classList.add("animation");
+                    oneCoin.style.left = "unset";
+                    oneCoin.style.top = "unset";
+                };
             }
             return true;
         });
@@ -115,13 +122,13 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                 bubble.classList.add("animation");
                 promptButton.style.display = "none";
                 setTimeout(function () {
-                    drawTheAmount(x);
+                    drawTheAmount(x, y);
                     pigArray = [];
                     image.forEach(function (img) {
                         img.style.left = "unset";
                         img.style.top = "unset";
-                        img.style.width="9vw";
-                        img.style.height="9vw";
+                        img.style.width = "9vw";
+                        img.style.height = "9vw";
                         let imgValue = img.getAttribute('value');
                         let target = "";
                         if (imgValue == 0.01) {
@@ -149,17 +156,14 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                     message = "";
                 }, 4000);
             } else {
-                message = "Liczba monet nie zgadza się z podaną kwotą. Spróbuj jeszcze raz";
+                message = "Źle. Spróbuj jeszcze raz " + pigArray.join("+");
                 pigArray = [];
                 bubble.innerText = message;
                 bubble.classList.add("animation");
             };
-
         };
     });
-
 } else {
-
     function drop(ev) {
         ev.preventDefault();
         let data = ev.dataTransfer.getData("money");
@@ -179,16 +183,42 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             pig.classList.add("shadow2");
             let data = ev.dataTransfer.getData("money");//transferowana moneta
             let imgs = document.getElementById(data);//uchwyt do monety
-            imgs.style.position = "relative";
             let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
-            this.appendChild(document.getElementById(data));
-            pigArray.push(imgValue);
+            let howManyChild = this.childElementCount;
+            if (window.matchMedia('(min-width: 995px)').matches) {
+                if (howManyChild < 18) {
+                    imgs.style.position = "relative";
+                    this.appendChild(document.getElementById(data));
+                    pigArray.push(imgValue);
+                    imgs.style.width = "3vw";
+                    imgs.style.height = "3vw";
+                } else {
+                    message = "Mam pełny brzuszek. Użyj mniej monet";
+                    bubble.innerText = message;
+                    bubble.classList.add("animation");
+                };
+            } else if (window.matchMedia('(min-width: 600px) and (max-width: 994px)').matches) {
+                if (howManyChild < 14) {
+                    imgs.style.position = "relative";
+                    this.appendChild(document.getElementById(data));
+                    pigArray.push(imgValue);
+                    imgs.style.width = "3vw";
+                    imgs.style.height = "3vw";
+                } else {
+                    message = "Mam pełny brzuszek. Użyj mniej monet";
+                    bubble.innerText = message;
+                    bubble.classList.add("animation");
+                };
+            };
         };
     });
     pig.addEventListener("dragstart", function (ev) {
         pig.classList.add("shadow");
         let data = ev.dataTransfer.getData("money");//transferowana moneta
         let imgs = document.getElementById(data);//uchwyt do monety
+        imgs.style.width = "4vw";
+        imgs.style.height = "4vw";
+        imgs.style.position = "absolute";
         let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
         if (pigArray.indexOf(imgValue) > -1) {//sprawdzamy czy wartość znajduje się w tablicy
             pigArray.splice(pigArray.indexOf(imgValue), 1);//usuwamy wartość z tablicy
@@ -247,7 +277,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                 bubble.classList.add("animation");
                 promptButton.style.display = "none";
                 setTimeout(function () {
-                    drawTheAmount(x);
+                    drawTheAmount(x, y);
                     pigArray = [];
                     image.forEach(function (img) {
                         let imgValue = img.getAttribute('value');
@@ -277,7 +307,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                     message = "";
                 }, 4000);
             } else {
-                message = "Liczba monet nie zgadza się z podaną kwotą. Spróbuj jeszcze raz";
+                message = "Źle. Spróbuj jeszcze raz " + pigArray.join("+");
                 bubble.innerText = message;
                 bubble.classList.add("animation");
             };
@@ -294,10 +324,11 @@ promptButton.addEventListener("click", () => {
     bubble.offsetHeight;
     for (i = 0; i < posibbleMoney.length; i++) {
         let coin = posibbleMoney[i];
+
         while ((round(remain, 2) - coin) >= 0) {
             promptArray.push(coin);
             remain = remain - coin;
-        }
+        };
     }
     let answer = "";
     for (i = 0; i < promptArray.length - 1; i++) {
@@ -312,15 +343,16 @@ promptButton.addEventListener("click", () => {
 
 easyButton.addEventListener("click", function () {
     startGame = true;
-    x = easyArray;
     gameInfo.style.display = "none";
     command.style.opacity = "1";
     checkButton.style.opacity = "1";
-    drawTheAmount(easyArray);
+    x = 40;
+    y = 1;
+    drawTheAmount(x, y);
     image.forEach(function (img) {
         img.style.left = "unset";
         img.style.top = "unset";
-        img.style.position="absolute";
+        img.style.position = "absolute";
     });
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
@@ -338,15 +370,16 @@ easyButton.addEventListener("click", function () {
 });
 mediumButton.addEventListener("click", function () {
     startGame = true;
-    x = mediumArray;
     command.style.opacity = "1";
     gameInfo.style.display = "none";
     checkButton.style.opacity = "1";
-    drawTheAmount(mediumArray);
+    x = 200;
+    y = 10;
+    drawTheAmount(x, y);
     image.forEach(function (img) {
         img.style.left = "unset";
         img.style.top = "unset";
-        img.style.position="absolute";
+        img.style.position = "absolute";
     });
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
@@ -365,15 +398,16 @@ mediumButton.addEventListener("click", function () {
 });
 hardButton.addEventListener("click", function () {
     startGame = true;
-    x = hardArray;
     gameInfo.style.display = "none";
     checkButton.style.opacity = "1";
-    command.style.opacity = "1";    
-    drawTheAmount(hardArray);
+    command.style.opacity = "1";
+    x = 2000;
+    y = 100;
+    drawTheAmount(x, y);
     image.forEach(function (img) {
         img.style.left = "unset";
         img.style.top = "unset";
-        img.style.position="absolute";
+        img.style.position = "absolute";
     });
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
@@ -389,4 +423,3 @@ hardButton.addEventListener("click", function () {
         hardBlock.classList.remove("hard");
     });
 });
-

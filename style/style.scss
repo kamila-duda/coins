@@ -16,6 +16,43 @@ html {
     min-height: 100vh;
     height: min-content;
 }
+.button{
+    cursor: pointer;
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+    font-weight: bold;
+    outline: none;
+}
+@media only screen and (max-width: 600px) {
+    .button{
+        width: 45px;
+        height: 25px;
+    }
+  }
+.game__checkButton {
+    @extend .button;
+    width: 150px;
+    height: 60px;
+    font-size: 25px;
+    font-family: 'Lobster', cursive;
+    margin-right: 30px;
+    opacity: 0;
+    transition: opacity 2s;
+    &:hover{
+        border-top: 2px solid #ffe4c4;
+        border-left: 2px solid #ffe4c4;
+        background-color: #ffe4c4;
+    }}
+    @media only screen and (max-width: 600px) {
+        .game__checkButton {
+            width: 60px;
+            height: 30px;
+            font-size: 10px;
+            margin-right: unset;
+            margin-top: 10px;
+        }
+      }
 .game__introduction {
     display: flex;
     width: 100%;
@@ -48,6 +85,7 @@ html {
     .game__level{
         font-size: 10px;
         margin-top: 50px;
+        padding-right: 0px;
     }
   }
 .money{
@@ -59,7 +97,6 @@ html {
 }
 @media only screen and (max-width: 600px) {
     .money{
-        display: unset;
         max-width: 100%;
     }
   }
@@ -75,8 +112,8 @@ html {
 }
 @media only screen and (max-width: 600px) {
     .game__command{
-        max-height: 30px;
-        font-size: 12px;
+        max-height: min-content;
+        font-size: 14px;
     }
   }
 .game__amount {
@@ -240,7 +277,7 @@ html {
         width: 30vw;
         height: 14vw;
         padding: 5px;
-        font-size: 10px;
+        font-size: 13px;
         &::after {
             content: "";
             top: -14%;
@@ -259,42 +296,6 @@ html {
         opacity: 1;
     }
 }
-.button{
-    cursor: pointer;
-    width: 80px;
-    height: 50px;
-    border-radius: 50%;
-    font-weight: bold;
-    outline: none;
-}
-@media only screen and (max-width: 600px) {
-    .button{
-        width: 45px;
-        height: 25px;
-    }
-  }
-.game__checkButton {
-    @extend .button;
-    width: 150px;
-    height: 70px;
-    font-size: 25px;
-    font-family: 'Lobster', cursive;
-    margin-right: 30px;
-    opacity: 0;
-    transition: opacity 2s;
-    &:hover{
-        border-top: 2px solid #ffe4c4;
-        border-left: 2px solid #ffe4c4;
-        background-color: #ffe4c4;
-    }}
-    @media only screen and (max-width: 600px) {
-        .game__checkButton {
-            width: 60px;
-            height: 30px;
-            font-size: 10px;
-            margin-right: unset;
-        }
-      }
 .game__easyButton{
     @extend .button;
     background-color: #1bda1b;
