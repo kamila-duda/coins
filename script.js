@@ -304,6 +304,8 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                             target = document.querySelector(".js-5zl");
                         };
                         img.style.position = "absolute";
+                        img.style.width = "4vw";
+                        img.style.height = "4vw";
                         target.appendChild(img);
                     });
                     message = "";
