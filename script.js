@@ -23,7 +23,9 @@ for (let i = 0; i < image.length; i++) {//tworzenie id monet
     image[i].id = i;
     image[i].setAttribute("dragaable", "true");
 };
-
+window.addEventListener("resize",function(){
+    window.location.reload();
+});
 function drawTheAmount(x, y) {
     let number = Math.floor((Math.random() * (x)) + 1) / y;
     amountContainer.innerHTML = number.toFixed(2) + " zł";
