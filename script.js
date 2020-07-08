@@ -16,7 +16,13 @@ let easyTile = document.querySelectorAll(".easy");
 let mediumTile = document.querySelectorAll(".medium");
 let hardTile = document.querySelectorAll(".hard");
 let pigArray = [];
-const pigGoodText = ["Brawo!", "Super :)", "Znakomicie!", "Tak trzymaj!", "Dla Ciebie to pestka :)"];
+const pigGoodText = [
+{text:"Brawo!", mp3:"sounds/brawo.mp3"},
+{ text:"Super :)", mp3:"sounds/super.mp3"}, 
+{text:"Znakomicie!", mp3:"sounds/znakomicie.mp3"},
+{ text:"Tak trzymaj!", mp3:"sounds/tak trzymaj.mp3"}, 
+{text:"Dla Ciebie to pestka :)", mp3:"sounds/pestka.mp3"},
+];
 let x = 40;
 let y = 1;
 for (let i = 0; i < image.length; i++) {//tworzenie id monet
@@ -26,6 +32,39 @@ for (let i = 0; i < image.length; i++) {//tworzenie id monet
 window.addEventListener("resize",function(){
     window.location.reload();
 });
+
+function resetCoinPosition(position, size, direction){
+    image.forEach(function (img) {
+        let imgValue = img.getAttribute('value');
+       // let target = "";
+        img.style.position = position;
+        img.style.width = size;
+        img.style.height = size;
+        img.style.left = direction;
+        img.style.top = direction;
+        if (imgValue == 0.01) {
+            target = document.querySelector(".js-1gr");
+        } else if (imgValue == 0.02) {
+            target = document.querySelector(".js-2gr");
+        } else if (imgValue == 0.05) {
+            target = document.querySelector(".js-5gr");
+        } else if (imgValue == 0.1) {
+            target = document.querySelector(".js-10gr");
+        } else if (imgValue == 0.2) {
+            target = document.querySelector(".js-20gr");
+        } else if (imgValue == 0.5) {
+            target = document.querySelector(".js-50gr");
+        } else if (imgValue == 1) {
+            target = document.querySelector(".js-1zl");
+        } else if (imgValue == 2) {
+            target = document.querySelector(".js-2zl");
+        } else if (imgValue == 5) {
+            target = document.querySelector(".js-5zl");
+        };
+       // sendToTarget(imgValue);
+        target.appendChild(img);
+    });
+};
 function drawTheAmount(x, y) {
     let number = Math.floor((Math.random() * (x)) + 1) / y;
     amountContainer.innerHTML = number.toFixed(2) + " zł";
@@ -118,43 +157,17 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             bubble.classList.remove("animation")
             bubble.offsetHeight;
             if (round(suma, 2) == parseFloat(amountContainer.innerHTML)) {
-                let text = Math.floor(Math.random() * (pigGoodText.length));
-                message = pigGoodText[text];
+                let index = Math.floor(Math.random() * (pigGoodText.length));
+                message = pigGoodText[index].text;
                 bubble.innerText = message;
+                let sounds = new Audio(pigGoodText[index].mp3);
+                sounds.play();
                 bubble.classList.add("animation");
                 promptButton.style.display = "none";
                 setTimeout(function () {
                     drawTheAmount(x, y);
                     pigArray = [];
-                    image.forEach(function (img) {
-                        img.style.left = "unset";
-                        img.style.top = "unset";
-                        img.style.width = "9vw";
-                        img.style.height = "9vw";
-                        let imgValue = img.getAttribute('value');
-                        let target = "";
-                        if (imgValue == 0.01) {
-                            target = document.querySelector(".js-1gr");
-                        } else if (imgValue == 0.02) {
-                            target = document.querySelector(".js-2gr");
-                        } else if (imgValue == 0.05) {
-                            target = document.querySelector(".js-5gr");
-                        } else if (imgValue == 0.1) {
-                            target = document.querySelector(".js-10gr");
-                        } else if (imgValue == 0.2) {
-                            target = document.querySelector(".js-20gr");
-                        } else if (imgValue == 0.5) {
-                            target = document.querySelector(".js-50gr");
-                        } else if (imgValue == 1) {
-                            target = document.querySelector(".js-1zl");
-                        } else if (imgValue == 2) {
-                            target = document.querySelector(".js-2zl");
-                        } else if (imgValue == 5) {
-                            target = document.querySelector(".js-5zl");
-                        };
-                        img.style.position = "absolute";
-                        target.appendChild(img);
-                    });
+                    resetCoinPosition("absolute", "9vw", "unset");
                     message = "";
                 }, 4000);
             } else {
@@ -218,9 +231,8 @@ if (window.matchMedia("(pointer: coarse)").matches) {
         pig.classList.add("shadow");
         let data = ev.dataTransfer.getData("money");//transferowana moneta
         let imgs = document.getElementById(data);//uchwyt do monety
-        imgs.style.width = "4vw";
-        imgs.style.height = "4vw";
-        imgs.style.position = "absolute";
+        
+        //imgs.style.position = "absolute";
         let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
         if (pigArray.indexOf(imgValue) > -1) {//sprawdzamy czy wartość znajduje się w tablicy
             pigArray.splice(pigArray.indexOf(imgValue), 1);//usuwamy wartość z tablicy
@@ -236,6 +248,8 @@ if (window.matchMedia("(pointer: coarse)").matches) {
         let imgs = document.getElementById(data);//uchwyt do monety
         let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
         imgs.style.position = "fixed";
+        imgs.style.width = "4vw";
+        imgs.style.height = "4vw";
         let target = "";
         if (imgValue == 0.01) {
             target = document.querySelector(".js-1gr");
@@ -263,7 +277,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             ev.dataTransfer.setData("money", ev.target.id);
         });
     });
-
+    
     checkButton.addEventListener("click", function () {
         if (startGame) {
             let suma = 0;
@@ -273,41 +287,17 @@ if (window.matchMedia("(pointer: coarse)").matches) {
             bubble.classList.remove("animation")
             bubble.offsetHeight;
             if (round(suma, 2) == parseFloat(amountContainer.innerHTML)) {
-                let text = Math.floor(Math.random() * (pigGoodText.length));
-                message = pigGoodText[text];
+                let index = Math.floor(Math.random() * (pigGoodText.length));
+                message = pigGoodText[index].text;
                 bubble.innerText = message;
+                let sounds = new Audio(pigGoodText[index].mp3);
+                sounds.play();
                 bubble.classList.add("animation");
                 promptButton.style.display = "none";
                 setTimeout(function () {
                     drawTheAmount(x, y);
                     pigArray = [];
-                    image.forEach(function (img) {
-                        let imgValue = img.getAttribute('value');
-                        let target = "";
-                        if (imgValue == 0.01) {
-                            target = document.querySelector(".js-1gr");
-                        } else if (imgValue == 0.02) {
-                            target = document.querySelector(".js-2gr");
-                        } else if (imgValue == 0.05) {
-                            target = document.querySelector(".js-5gr");
-                        } else if (imgValue == 0.1) {
-                            target = document.querySelector(".js-10gr");
-                        } else if (imgValue == 0.2) {
-                            target = document.querySelector(".js-20gr");
-                        } else if (imgValue == 0.5) {
-                            target = document.querySelector(".js-50gr");
-                        } else if (imgValue == 1) {
-                            target = document.querySelector(".js-1zl");
-                        } else if (imgValue == 2) {
-                            target = document.querySelector(".js-2zl");
-                        } else if (imgValue == 5) {
-                            target = document.querySelector(".js-5zl");
-                        };
-                        img.style.position = "absolute";
-                        img.style.width = "4vw";
-                        img.style.height = "4vw";
-                        target.appendChild(img);
-                    });
+                    resetCoinPosition("absolute", "4vw");
                     message = "";
                 }, 4000);
             } else {
@@ -328,11 +318,12 @@ promptButton.addEventListener("click", () => {
     bubble.offsetHeight;
     for (i = 0; i < posibbleMoney.length; i++) {
         let coin = posibbleMoney[i];
-
-        while ((round(remain, 2) - coin) >= 0) {
-            promptArray.push(coin);
-            remain = remain - coin;
-        };
+        for(j = 0; j < 6; j++){
+            if((round(remain, 2) - coin) >= 0){
+                    promptArray.push(coin);
+                    remain = remain - coin;
+                };
+        }
     }
     let answer = "";
     for (i = 0; i < promptArray.length - 1; i++) {
@@ -353,11 +344,11 @@ easyButton.addEventListener("click", function () {
     x = 40;
     y = 1;
     drawTheAmount(x, y);
-    image.forEach(function (img) {
-        img.style.left = "unset";
-        img.style.top = "unset";
-        img.style.position = "absolute";
-    });
+    if (window.matchMedia('(max-device-width: 600px)').matches) {
+        resetCoinPosition("absolute", "9vw", "unset");
+    }else{
+        resetCoinPosition("absolute", "4vw", "unset");
+    };
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
         easyBlock.offsetHeight;
@@ -380,11 +371,11 @@ mediumButton.addEventListener("click", function () {
     x = 200;
     y = 10;
     drawTheAmount(x, y);
-    image.forEach(function (img) {
-        img.style.left = "unset";
-        img.style.top = "unset";
-        img.style.position = "absolute";
-    });
+    if (window.matchMedia('(max-device-width: 600px)').matches) {
+        resetCoinPosition("absolute", "9vw", "unset");
+    }else{
+        resetCoinPosition("absolute", "4vw", "unset");
+    };
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
         easyBlock.offsetHeight;
@@ -408,11 +399,11 @@ hardButton.addEventListener("click", function () {
     x = 2000;
     y = 100;
     drawTheAmount(x, y);
-    image.forEach(function (img) {
-        img.style.left = "unset";
-        img.style.top = "unset";
-        img.style.position = "absolute";
-    });
+    if (window.matchMedia('(max-device-width: 600px)').matches) {
+        resetCoinPosition("absolute", "9vw", "unset");
+    }else{
+        resetCoinPosition("absolute", "4vw", "unset");
+    };
     easyTile.forEach(function (easyBlock) {
         easyBlock.classList.add("easy");
         easyBlock.offsetHeight;
