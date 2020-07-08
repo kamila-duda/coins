@@ -171,7 +171,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                     message = "";
                 }, 4000);
             } else {
-                message = "Źle. Spróbuj jeszcze raz " + pigArray.join("+");
+                message = "Źle. Spróbuj jeszcze raz";
                 pigArray = [];
                 bubble.innerText = message;
                 bubble.classList.add("animation");
@@ -301,7 +301,7 @@ if (window.matchMedia("(pointer: coarse)").matches) {
                     message = "";
                 }, 4000);
             } else {
-                message = "Źle. Spróbuj jeszcze raz " + pigArray.join("+");
+                message = "Źle. Spróbuj jeszcze raz";
                 bubble.innerText = message;
                 bubble.classList.add("animation");
             };
