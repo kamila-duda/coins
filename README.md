@@ -1,4 +1,5 @@
 # Piggybank game
+Demo: <a href="https://kamila-duda.github.io/coins/" target="_blank">https://kamila-duda.github.io/coins/</a>
 
 ## Table of contents
 
