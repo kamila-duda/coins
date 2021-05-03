@@ -17,404 +17,437 @@ let mediumTile = document.querySelectorAll(".medium");
 let hardTile = document.querySelectorAll(".hard");
 let pigArray = [];
 const pigGoodText = [
-{text:"Brawo!", mp3:"sounds/brawo.mp3"},
-{ text:"Super :)", mp3:"sounds/super.mp3"}, 
-{text:"Znakomicie!", mp3:"sounds/znakomicie.mp3"},
-{ text:"Tak trzymaj!", mp3:"sounds/tak trzymaj.mp3"}, 
-{text:"Dla Ciebie to pestka :)", mp3:"sounds/pestka.mp3"},
+  { text: "Brawo!", mp3: "sounds/brawo.mp3" },
+  { text: "Super :)", mp3: "sounds/super.mp3" },
+  { text: "Znakomicie!", mp3: "sounds/znakomicie.mp3" },
+  { text: "Tak trzymaj!", mp3: "sounds/tak trzymaj.mp3" },
+  { text: "Dla Ciebie to pestka :)", mp3: "sounds/pestka.mp3" },
 ];
 let x = 40;
 let y = 1;
-for (let i = 0; i < image.length; i++) {//tworzenie id monet
-    image[i].id = i;
-    image[i].setAttribute("dragaable", "true");
-};
-window.addEventListener("resize",function(){
-    window.location.reload();
+for (let i = 0; i < image.length; i++) {
+  //tworzenie id monet
+  image[i].id = i;
+  image[i].setAttribute("dragaable", "true");
+}
+window.addEventListener("resize", function () {
+  window.location.reload();
 });
 
-function resetCoinPosition(position, size, direction){
-    image.forEach(function (img) {
-        let imgValue = img.getAttribute('value');
-       // let target = "";
-        img.style.position = position;
-        img.style.width = size;
-        img.style.height = size;
-        img.style.left = direction;
-        img.style.top = direction;
-        if (imgValue == 0.01) {
-            target = document.querySelector(".js-1gr");
-        } else if (imgValue == 0.02) {
-            target = document.querySelector(".js-2gr");
-        } else if (imgValue == 0.05) {
-            target = document.querySelector(".js-5gr");
-        } else if (imgValue == 0.1) {
-            target = document.querySelector(".js-10gr");
-        } else if (imgValue == 0.2) {
-            target = document.querySelector(".js-20gr");
-        } else if (imgValue == 0.5) {
-            target = document.querySelector(".js-50gr");
-        } else if (imgValue == 1) {
-            target = document.querySelector(".js-1zl");
-        } else if (imgValue == 2) {
-            target = document.querySelector(".js-2zl");
-        } else if (imgValue == 5) {
-            target = document.querySelector(".js-5zl");
-        };
-       // sendToTarget(imgValue);
-        target.appendChild(img);
-    });
-};
+function resetCoinPosition(position, size, direction) {
+  image.forEach(function (img) {
+    let imgValue = img.getAttribute("value");
+    // let target = "";
+    img.style.position = position;
+    img.style.width = size;
+    img.style.height = size;
+    img.style.left = direction;
+    img.style.top = direction;
+    if (imgValue == 0.01) {
+      target = document.querySelector(".js-1gr");
+    } else if (imgValue == 0.02) {
+      target = document.querySelector(".js-2gr");
+    } else if (imgValue == 0.05) {
+      target = document.querySelector(".js-5gr");
+    } else if (imgValue == 0.1) {
+      target = document.querySelector(".js-10gr");
+    } else if (imgValue == 0.2) {
+      target = document.querySelector(".js-20gr");
+    } else if (imgValue == 0.5) {
+      target = document.querySelector(".js-50gr");
+    } else if (imgValue == 1) {
+      target = document.querySelector(".js-1zl");
+    } else if (imgValue == 2) {
+      target = document.querySelector(".js-2zl");
+    } else if (imgValue == 5) {
+      target = document.querySelector(".js-5zl");
+    }
+    // sendToTarget(imgValue);
+    target.appendChild(img);
+  });
+}
 function drawTheAmount(x, y) {
-    let number = Math.floor((Math.random() * (x)) + 1) / y;
-    amountContainer.innerHTML = number.toFixed(2) + " zł";
-    message.innerText = "";
-    setTimeout(function () {
-        promptButton.style.display = "unset";
-    }, 15000);
-};
+  let number = Math.floor(Math.random() * x + 1) / y;
+  amountContainer.innerHTML = number.toFixed(2) + " zł";
+  message.innerText = "";
+  setTimeout(function () {
+    promptButton.style.display = "unset";
+  }, 15000);
+}
 function round(n, k) {
-    let factor = Math.pow(10, k);
-    return Math.round(n * factor) / factor;
-};
+  let factor = Math.pow(10, k);
+  return Math.round(n * factor) / factor;
+}
 //sprawdzam czy ekran jest dotykowy
 if (window.matchMedia("(pointer: coarse)").matches) {
-    if (window.matchMedia('(max-device-width: 600px)').matches) {
-        pig.insertAdjacentElement("afterend", document.querySelector(".game__level"));
-        amountContainer.insertAdjacentElement("afterend", checkButton);
-    };
+  if (window.matchMedia("(max-device-width: 600px)").matches) {
+    pig.insertAdjacentElement(
+      "afterend",
+      document.querySelector(".game__level")
+    );
+    amountContainer.insertAdjacentElement("afterend", checkButton);
+  }
 
-    let money = document.querySelectorAll(".coin");
-    money.forEach(function (oneCoin) {
-        oneCoin.addEventListener("touchstart", function (ev) {
-            if (ev.cancelable) {
-                ev.preventDefault();
-                oneCoin.style.position = "fixed";
-                oneCoin.style.width = "9vw";
-                oneCoin.style.height = "9vw";
-                pig.classList.add("shadow");
-                pig.style.borderStyle = "dotted";
-                pig.classList.add("alternativeText");
-            }
-        });
-        oneCoin.addEventListener("touchcancel", function (ev) { alert(ev); }, false);
+  let money = document.querySelectorAll(".coin");
+  money.forEach(function (oneCoin) {
+    oneCoin.addEventListener("touchstart", function (ev) {
+      if (ev.cancelable) {
+        ev.preventDefault();
+        oneCoin.style.position = "fixed";
+        oneCoin.style.width = "9vw";
+        oneCoin.style.height = "9vw";
+        pig.classList.add("shadow");
+        pig.style.borderStyle = "dotted";
+        pig.classList.add("alternativeText");
+      }
     });
-    money.forEach(function (oneCoin) {
-        oneCoin.addEventListener("touchmove", function (ev) {
-            ev.preventDefault();
-            let moveCoin = document.getElementById(ev.targetTouches[0].target.id);
-            let path = ev.targetTouches[0];
-            moveCoin.style.left = path.clientX + "px";
-            moveCoin.style.top = path.clientY + "px";
-            if (ev.originalEvent !== undefined && _.touchObject.swipeLength > 4 && ev.cancelable) { ev.preventDefault(); }
-        });
+    oneCoin.addEventListener(
+      "touchcancel",
+      function (ev) {
+        alert(ev);
+      },
+      false
+    );
+  });
+  money.forEach(function (oneCoin) {
+    oneCoin.addEventListener("touchmove", function (ev) {
+      ev.preventDefault();
+      let moveCoin = document.getElementById(ev.targetTouches[0].target.id);
+      let path = ev.targetTouches[0];
+      moveCoin.style.left = path.clientX + "px";
+      moveCoin.style.top = path.clientY + "px";
+      if (
+        ev.originalEvent !== undefined &&
+        _.touchObject.swipeLength > 4 &&
+        ev.cancelable
+      ) {
+        ev.preventDefault();
+      }
     });
-    let pigPosition = pig.getBoundingClientRect();
-    let xStart = pigPosition.left;
-    let yStart = pigPosition.top;
-    let xEnd = pigPosition.width + xStart;
-    let yEnd = pigPosition.height + yStart;
-    money.forEach(function (oneCoin) {
-        oneCoin.addEventListener("touchend", function (ev) {
-            let targetPosition = ev.target.getBoundingClientRect();
-            //ev.target to pozycja monety, a te drugie to diva pig
-            if ((targetPosition.left > xStart) && (targetPosition.left < xEnd) && (targetPosition.top > yStart) && (targetPosition.top < yEnd)) {
-                let howManyChild = pig.childElementCount;
-                if (howManyChild < 18) {
-                    oneCoin.classList.add("inPig");
-                    oneCoin.style.position = "relative";
-                    oneCoin.style.left = "unset";
-                    oneCoin.style.top = "unset";
-                    oneCoin.style.width = "5vw";
-                    oneCoin.style.height = "5vw";
-                    pig.appendChild(oneCoin);
-                } else {
-                    message = "Mam pełny brzuszek. Użyj mniej monet";
-                    bubble.innerText = message;
-                    bubble.classList.add("animation");
-                    oneCoin.style.left = "unset";
-                    oneCoin.style.top = "unset";
-                };
-            }
-            return true;
-        });
+  });
+  let pigPosition = pig.getBoundingClientRect();
+  let xStart = pigPosition.left;
+  let yStart = pigPosition.top;
+  let xEnd = pigPosition.width + xStart;
+  let yEnd = pigPosition.height + yStart;
+  money.forEach(function (oneCoin) {
+    oneCoin.addEventListener("touchend", function (ev) {
+      let targetPosition = ev.target.getBoundingClientRect();
+      //ev.target to pozycja monety, a te drugie to diva pig
+      if (
+        targetPosition.left > xStart &&
+        targetPosition.left < xEnd &&
+        targetPosition.top > yStart &&
+        targetPosition.top < yEnd
+      ) {
+        let howManyChild = pig.childElementCount;
+        if (howManyChild < 18) {
+          oneCoin.classList.add("inPig");
+          oneCoin.style.position = "relative";
+          oneCoin.style.left = "unset";
+          oneCoin.style.top = "unset";
+          oneCoin.style.width = "4vw";
+          oneCoin.style.height = "4vw";
+          pig.appendChild(oneCoin);
+        } else {
+          message = "Mam pełny brzuszek. Użyj mniej monet";
+          bubble.innerText = message;
+          bubble.classList.add("animation");
+          oneCoin.style.left = "unset";
+          oneCoin.style.top = "unset";
+        }
+      }
+      return true;
     });
+  });
 
-    checkButton.addEventListener("click", function () {
-        if (startGame) {
-            let suma = 0;
-            let moneyInPig = document.querySelectorAll(".inPig");
-            moneyInPig.forEach(function (inPig) {
-                let moneyPosition = inPig.getBoundingClientRect();
+  checkButton.addEventListener("click", function () {
+    if (startGame) {
+      let suma = 0;
+      let moneyInPig = document.querySelectorAll(".inPig");
+      moneyInPig.forEach(function (inPig) {
+        let moneyPosition = inPig.getBoundingClientRect();
 
-                if ((moneyPosition.left > xStart) && (moneyPosition.left < xEnd) && (moneyPosition.top > yStart) && (moneyPosition.top < yEnd)) {
-                    pigArray.push(inPig.getAttribute("value"));
-                }
-            })
-            for (let i = 0; i < pigArray.length; i++) {
-                suma += parseFloat(pigArray[i]);
-            };
-            bubble.classList.remove("animation")
-            bubble.offsetHeight;
-            if (round(suma, 2) == parseFloat(amountContainer.innerHTML)) {
-                let index = Math.floor(Math.random() * (pigGoodText.length));
-                message = pigGoodText[index].text;
-                bubble.innerText = message;
-                let sounds = new Audio(pigGoodText[index].mp3);
-                sounds.play();
-                bubble.classList.add("animation");
-                promptButton.style.display = "none";
-                setTimeout(function () {
-                    drawTheAmount(x, y);
-                    pigArray = [];
-                    resetCoinPosition("absolute", "9vw", "unset");
-                    message = "";
-                }, 4000);
-            } else {
-                message = "Źle. Spróbuj jeszcze raz";
-                pigArray = [];
-                bubble.innerText = message;
-                bubble.classList.add("animation");
-            };
-        };
-    });
+        if (
+          moneyPosition.left > xStart &&
+          moneyPosition.left < xEnd &&
+          moneyPosition.top > yStart &&
+          moneyPosition.top < yEnd
+        ) {
+          pigArray.push(inPig.getAttribute("value"));
+        }
+      });
+      for (let i = 0; i < pigArray.length; i++) {
+        suma += parseFloat(pigArray[i]);
+      }
+      bubble.classList.remove("animation");
+      bubble.offsetHeight;
+      if (round(suma, 2) == parseFloat(amountContainer.innerHTML)) {
+        let index = Math.floor(Math.random() * pigGoodText.length);
+        message = pigGoodText[index].text;
+        bubble.innerText = message;
+        let sounds = new Audio(pigGoodText[index].mp3);
+        sounds.play();
+        bubble.classList.add("animation");
+        promptButton.style.display = "none";
+        setTimeout(function () {
+          drawTheAmount(x, y);
+          pigArray = [];
+          if (window.matchMedia("(max-device-width: 600px)").matches) {
+            resetCoinPosition("absolute", "9vw", "unset");
+          } else {
+            resetCoinPosition("absolute", "4vw", "unset");
+          }
+          message = "";
+        }, 4000);
+      } else {
+        message = "Źle. Spróbuj jeszcze raz";
+        pigArray = [];
+        bubble.innerText = message;
+        bubble.classList.add("animation");
+      }
+    }
+  });
 } else {
-    function drop(ev) {
-        ev.preventDefault();
-        let data = ev.dataTransfer.getData("money");
-        ev.target.appendChild(document.getElementById(data));
-    };
+  function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("money");
+    ev.target.appendChild(document.getElementById(data));
+  }
 
-    pig.addEventListener("dragover", function (ev) {
-        ev.preventDefault();
-        pig.classList.add("shadow");
-    });
-    pig.addEventListener("dragleave", function () {
-        pig.classList.remove("shadow");
-    });
-    pig.addEventListener("drop", function (ev) {
-        if (startGame) {
-            pig.classList.remove("shadow");
-            pig.classList.add("shadow2");
-            let data = ev.dataTransfer.getData("money");//transferowana moneta
-            let imgs = document.getElementById(data);//uchwyt do monety
-            let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
-            let howManyChild = this.childElementCount;
-            if (window.matchMedia('(min-width: 995px)').matches) {
-                if (howManyChild < 18) {
-                    imgs.style.position = "relative";
-                    this.appendChild(document.getElementById(data));
-                    pigArray.push(imgValue);
-                    imgs.style.width = "3vw";
-                    imgs.style.height = "3vw";
-                } else {
-                    message = "Mam pełny brzuszek. Użyj mniej monet";
-                    bubble.innerText = message;
-                    bubble.classList.add("animation");
-                };
-            } else if (window.matchMedia('(min-width: 600px) and (max-width: 994px)').matches) {
-                if (howManyChild < 14) {
-                    imgs.style.position = "relative";
-                    this.appendChild(document.getElementById(data));
-                    pigArray.push(imgValue);
-                    imgs.style.width = "3vw";
-                    imgs.style.height = "3vw";
-                } else {
-                    message = "Mam pełny brzuszek. Użyj mniej monet";
-                    bubble.innerText = message;
-                    bubble.classList.add("animation");
-                };
-            };
-        };
-    });
-    pig.addEventListener("dragstart", function (ev) {
-        pig.classList.add("shadow");
-        let data = ev.dataTransfer.getData("money");//transferowana moneta
-        let imgs = document.getElementById(data);//uchwyt do monety
-        
-        //imgs.style.position = "absolute";
-        let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
-        if (pigArray.indexOf(imgValue) > -1) {//sprawdzamy czy wartość znajduje się w tablicy
-            pigArray.splice(pigArray.indexOf(imgValue), 1);//usuwamy wartość z tablicy
-        };
-    });
-    coinsContainer.addEventListener("dragover", function (ev) {
-        ev.preventDefault();
-    });
+  pig.addEventListener("dragover", function (ev) {
+    ev.preventDefault();
+    pig.classList.add("shadow");
+  });
+  pig.addEventListener("dragleave", function () {
+    pig.classList.remove("shadow");
+  });
+  pig.addEventListener("drop", function (ev) {
+    if (startGame) {
+      pig.classList.remove("shadow");
+      pig.classList.add("shadow2");
+      let data = ev.dataTransfer.getData("money"); //transferowana moneta
+      let imgs = document.getElementById(data); //uchwyt do monety
+      let imgValue = imgs.getAttribute("value"); //pobieramy ustawione value
+      let howManyChild = this.childElementCount;
+      if (window.matchMedia("(min-width: 995px)").matches) {
+        if (howManyChild < 18) {
+          imgs.style.position = "relative";
+          this.appendChild(document.getElementById(data));
+          pigArray.push(imgValue);
+          imgs.style.width = "3vw";
+          imgs.style.height = "3vw";
+        } else {
+          message = "Mam pełny brzuszek. Użyj mniej monet";
+          bubble.innerText = message;
+          bubble.classList.add("animation");
+        }
+      } else if (
+        window.matchMedia("(min-width: 600px) and (max-width: 994px)").matches
+      ) {
+        if (howManyChild < 14) {
+          imgs.style.position = "relative";
+          this.appendChild(document.getElementById(data));
+          pigArray.push(imgValue);
+          imgs.style.width = "3vw";
+          imgs.style.height = "3vw";
+        } else {
+          message = "Mam pełny brzuszek. Użyj mniej monet";
+          bubble.innerText = message;
+          bubble.classList.add("animation");
+        }
+      }
+    }
+  });
+  pig.addEventListener("dragstart", function (ev) {
+    pig.classList.add("shadow");
+    let data = ev.dataTransfer.getData("money"); //transferowana moneta
+    let imgs = document.getElementById(data); //uchwyt do monety
 
-    coinsContainer.addEventListener("drop", function (ev) {
-        ev.preventDefault();
-        let data = ev.dataTransfer.getData("money");
-        let imgs = document.getElementById(data);//uchwyt do monety
-        let imgValue = imgs.getAttribute('value');//pobieramy ustawione value
-        imgs.style.position = "fixed";
-        imgs.style.width = "4vw";
-        imgs.style.height = "4vw";
-        let target = "";
-        if (imgValue == 0.01) {
-            target = document.querySelector(".js-1gr");
-        } else if (imgValue == 0.02) {
-            target = document.querySelector(".js-2gr");
-        } else if (imgValue == 0.05) {
-            target = document.querySelector(".js-5gr");
-        } else if (imgValue == 0.1) {
-            target = document.querySelector(".js-10gr");
-        } else if (imgValue == 0.2) {
-            target = document.querySelector(".js-20gr");
-        } else if (imgValue == 0.5) {
-            target = document.querySelector(".js-50gr");
-        } else if (imgValue == 1) {
-            target = document.querySelector(".js-1zl");
-        } else if (imgValue == 2) {
-            target = document.querySelector(".js-2zl");
-        } else if (imgValue == 5) {
-            target = document.querySelector(".js-5zl");
-        };
-        target.appendChild(document.getElementById(data));
+    //imgs.style.position = "absolute";
+    let imgValue = imgs.getAttribute("value"); //pobieramy ustawione value
+    if (pigArray.indexOf(imgValue) > -1) {
+      //sprawdzamy czy wartość znajduje się w tablicy
+      pigArray.splice(pigArray.indexOf(imgValue), 1); //usuwamy wartość z tablicy
+    }
+  });
+  coinsContainer.addEventListener("dragover", function (ev) {
+    ev.preventDefault();
+  });
+
+  coinsContainer.addEventListener("drop", function (ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("money");
+    let imgs = document.getElementById(data); //uchwyt do monety
+    let imgValue = imgs.getAttribute("value"); //pobieramy ustawione value
+    imgs.style.position = "fixed";
+    imgs.style.width = "4vw";
+    imgs.style.height = "4vw";
+    let target = "";
+    if (imgValue == 0.01) {
+      target = document.querySelector(".js-1gr");
+    } else if (imgValue == 0.02) {
+      target = document.querySelector(".js-2gr");
+    } else if (imgValue == 0.05) {
+      target = document.querySelector(".js-5gr");
+    } else if (imgValue == 0.1) {
+      target = document.querySelector(".js-10gr");
+    } else if (imgValue == 0.2) {
+      target = document.querySelector(".js-20gr");
+    } else if (imgValue == 0.5) {
+      target = document.querySelector(".js-50gr");
+    } else if (imgValue == 1) {
+      target = document.querySelector(".js-1zl");
+    } else if (imgValue == 2) {
+      target = document.querySelector(".js-2zl");
+    } else if (imgValue == 5) {
+      target = document.querySelector(".js-5zl");
+    }
+    target.appendChild(document.getElementById(data));
+  });
+  image.forEach(function (img) {
+    img.addEventListener("dragstart", function (ev) {
+      ev.dataTransfer.setData("money", ev.target.id);
     });
-    image.forEach(function (img) {
-        img.addEventListener("dragstart", function (ev) {
-            ev.dataTransfer.setData("money", ev.target.id);
-        });
-    });
-    
-    checkButton.addEventListener("click", function () {
-        if (startGame) {
-            let suma = 0;
-            for (let i = 0; i < pigArray.length; i++) {
-                suma += parseFloat(pigArray[i]);
-            };
-            bubble.classList.remove("animation")
-            bubble.offsetHeight;
-            if (round(suma, 2) == parseFloat(amountContainer.innerHTML)) {
-                let index = Math.floor(Math.random() * (pigGoodText.length));
-                message = pigGoodText[index].text;
-                bubble.innerText = message;
-                let sounds = new Audio(pigGoodText[index].mp3);
-                sounds.play();
-                bubble.classList.add("animation");
-                promptButton.style.display = "none";
-                setTimeout(function () {
-                    drawTheAmount(x, y);
-                    pigArray = [];
-                    resetCoinPosition("absolute", "4vw");
-                    message = "";
-                }, 4000);
-            } else {
-                message = "Źle. Spróbuj jeszcze raz";
-                bubble.innerText = message;
-                bubble.classList.add("animation");
-            };
-        };
-    });
+  });
+
+  checkButton.addEventListener("click", function () {
+    if (startGame) {
+      let suma = 0;
+      for (let i = 0; i < pigArray.length; i++) {
+        suma += parseFloat(pigArray[i]);
+      }
+      bubble.classList.remove("animation");
+      bubble.offsetHeight;
+      if (round(suma, 2) == parseFloat(amountContainer.innerHTML)) {
+        let index = Math.floor(Math.random() * pigGoodText.length);
+        message = pigGoodText[index].text;
+        bubble.innerText = message;
+        let sounds = new Audio(pigGoodText[index].mp3);
+        sounds.play();
+        bubble.classList.add("animation");
+        promptButton.style.display = "none";
+        setTimeout(function () {
+          drawTheAmount(x, y);
+          pigArray = [];
+          resetCoinPosition("absolute", "4vw");
+          message = "";
+        }, 4000);
+      } else {
+        message = "Źle. Spróbuj jeszcze raz";
+        bubble.innerText = message;
+        bubble.classList.add("animation");
+      }
+    }
+  });
 }
 
 promptButton.addEventListener("click", () => {
-    let amount = parseFloat(document.querySelector(".game__amount").innerHTML);
-    let promptArray = [];
-    let posibbleMoney = [5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
-    let remain = amount;
-    bubble.classList.remove("animation");
-    bubble.offsetHeight;
-    for (i = 0; i < posibbleMoney.length; i++) {
-        let coin = posibbleMoney[i];
-        for(j = 0; j < 6; j++){
-            if((round(remain, 2) - coin) >= 0){
-                    promptArray.push(coin);
-                    remain = remain - coin;
-                };
-        }
+  let amount = parseFloat(document.querySelector(".game__amount").innerHTML);
+  let promptArray = [];
+  let posibbleMoney = [5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
+  let remain = amount;
+  bubble.classList.remove("animation");
+  bubble.offsetHeight;
+  for (i = 0; i < posibbleMoney.length; i++) {
+    let coin = posibbleMoney[i];
+    for (j = 0; j < 6; j++) {
+      if (round(remain, 2) - coin >= 0) {
+        promptArray.push(coin);
+        remain = remain - coin;
+      }
     }
-    let answer = "";
-    for (i = 0; i < promptArray.length - 1; i++) {
-        answer += promptArray[i];
-        answer += " + "
-    }
-    answer += promptArray[promptArray.length - 1] + '= ' + amount;
-    message = "Spróbuj: " + answer;
-    bubble.innerText = message;
-    bubble.classList.add("animation");
+  }
+  let answer = "";
+  for (i = 0; i < promptArray.length - 1; i++) {
+    answer += promptArray[i];
+    answer += " + ";
+  }
+  answer += promptArray[promptArray.length - 1] + "= " + amount;
+  message = "Spróbuj: " + answer;
+  bubble.innerText = message;
+  bubble.classList.add("animation");
 });
 
 easyButton.addEventListener("click", function () {
-    startGame = true;
-    gameInfo.style.display = "none";
-    command.style.opacity = "1";
-    checkButton.style.opacity = "1";
-    x = 40;
-    y = 1;
-    drawTheAmount(x, y);
-    if (window.matchMedia('(max-device-width: 600px)').matches) {
-        resetCoinPosition("absolute", "9vw", "unset");
-    }else{
-        resetCoinPosition("absolute", "4vw", "unset");
-    };
-    easyTile.forEach(function (easyBlock) {
-        easyBlock.classList.add("easy");
-        easyBlock.offsetHeight;
-        easyBlock.classList.remove("easy");
-    });
-    mediumTile.forEach(function (mediumBlock) {
-        mediumBlock.offsetHeight;
-        mediumBlock.classList.add("medium");
-    });
-    hardTile.forEach(function (hardBlock) {
-        hardBlock.offsetHeight;
-        hardBlock.classList.add("hard");
-    });
+  startGame = true;
+  gameInfo.style.display = "none";
+  command.style.opacity = "1";
+  checkButton.style.opacity = "1";
+  x = 40;
+  y = 1;
+  drawTheAmount(x, y);
+  if (window.matchMedia("(max-device-width: 600px)").matches) {
+    resetCoinPosition("absolute", "9vw", "unset");
+  } else {
+    resetCoinPosition("absolute", "4vw", "unset");
+  }
+  easyTile.forEach(function (easyBlock) {
+    easyBlock.classList.add("easy");
+    easyBlock.offsetHeight;
+    easyBlock.classList.remove("easy");
+  });
+  mediumTile.forEach(function (mediumBlock) {
+    mediumBlock.offsetHeight;
+    mediumBlock.classList.add("medium");
+  });
+  hardTile.forEach(function (hardBlock) {
+    hardBlock.offsetHeight;
+    hardBlock.classList.add("hard");
+  });
 });
 mediumButton.addEventListener("click", function () {
-    startGame = true;
-    command.style.opacity = "1";
-    gameInfo.style.display = "none";
-    checkButton.style.opacity = "1";
-    x = 200;
-    y = 10;
-    drawTheAmount(x, y);
-    if (window.matchMedia('(max-device-width: 600px)').matches) {
-        resetCoinPosition("absolute", "9vw", "unset");
-    }else{
-        resetCoinPosition("absolute", "4vw", "unset");
-    };
-    easyTile.forEach(function (easyBlock) {
-        easyBlock.classList.add("easy");
-        easyBlock.offsetHeight;
-        easyBlock.classList.remove("easy");
-    });
-    mediumTile.forEach(function (mediumBlock) {
-        mediumBlock.classList.add("medium");
-        mediumBlock.offsetHeight;
-        mediumBlock.classList.remove("medium");
-    });
-    hardTile.forEach(function (hardBlock) {
-        hardBlock.offsetHeight;
-        hardBlock.classList.add("hard");
-    });
+  startGame = true;
+  command.style.opacity = "1";
+  gameInfo.style.display = "none";
+  checkButton.style.opacity = "1";
+  x = 200;
+  y = 10;
+  drawTheAmount(x, y);
+  if (window.matchMedia("(max-device-width: 600px)").matches) {
+    resetCoinPosition("absolute", "9vw", "unset");
+  } else {
+    resetCoinPosition("absolute", "4vw", "unset");
+  }
+  easyTile.forEach(function (easyBlock) {
+    easyBlock.classList.add("easy");
+    easyBlock.offsetHeight;
+    easyBlock.classList.remove("easy");
+  });
+  mediumTile.forEach(function (mediumBlock) {
+    mediumBlock.classList.add("medium");
+    mediumBlock.offsetHeight;
+    mediumBlock.classList.remove("medium");
+  });
+  hardTile.forEach(function (hardBlock) {
+    hardBlock.offsetHeight;
+    hardBlock.classList.add("hard");
+  });
 });
 hardButton.addEventListener("click", function () {
-    startGame = true;
-    gameInfo.style.display = "none";
-    checkButton.style.opacity = "1";
-    command.style.opacity = "1";
-    x = 2000;
-    y = 100;
-    drawTheAmount(x, y);
-    if (window.matchMedia('(max-device-width: 600px)').matches) {
-        resetCoinPosition("absolute", "9vw", "unset");
-    }else{
-        resetCoinPosition("absolute", "4vw", "unset");
-    };
-    easyTile.forEach(function (easyBlock) {
-        easyBlock.classList.add("easy");
-        easyBlock.offsetHeight;
-        easyBlock.classList.remove("easy");
-    });
-    mediumTile.forEach(function (mediumBlock) {
-        mediumBlock.classList.add("medium");
-        mediumBlock.offsetHeight;
-        mediumBlock.classList.remove("medium");
-    });
-    hardTile.forEach(function (hardBlock) {
-        hardBlock.classList.remove("hard");
-    });
+  startGame = true;
+  gameInfo.style.display = "none";
+  checkButton.style.opacity = "1";
+  command.style.opacity = "1";
+  x = 2000;
+  y = 100;
+  drawTheAmount(x, y);
+  if (window.matchMedia("(max-device-width: 600px)").matches) {
+    resetCoinPosition("absolute", "9vw", "unset");
+  } else {
+    resetCoinPosition("absolute", "4vw", "unset");
+  }
+  easyTile.forEach(function (easyBlock) {
+    easyBlock.classList.add("easy");
+    easyBlock.offsetHeight;
+    easyBlock.classList.remove("easy");
+  });
+  mediumTile.forEach(function (mediumBlock) {
+    mediumBlock.classList.add("medium");
+    mediumBlock.offsetHeight;
+    mediumBlock.classList.remove("medium");
+  });
+  hardTile.forEach(function (hardBlock) {
+    hardBlock.classList.remove("hard");
+  });
 });

@@ -1,58 +1,63 @@
 html {
     box-sizing: border-box;
-  }
-  *,
-  *::before,
-  *::after {
+}
+*,
+*::before,
+*::after {
     box-sizing: inherit;
-  }
+}
 .game__container {
     padding: 0px;
     margin: 0px;
     overflow-x: hidden;
     background-image: linear-gradient(#0143a7, #d0dcf7);
-    font-family: 'Lobster', cursive;
+    font-family: "Lobster", cursive;
     font-size: 20px;
     min-height: 100vh;
     height: min-content;
 }
-.button{
+.button {
     cursor: pointer;
     width: 80px;
     height: 50px;
+    border: 2px solid transparent;
     border-radius: 50%;
     font-weight: bold;
+    box-shadow: 5px 5px 10px 0px #706f7c;
     outline: none;
 }
 @media only screen and (max-width: 600px) {
-    .button{
+    .button {
         width: 45px;
         height: 25px;
     }
-  }
+}
 .game__checkButton {
     @extend .button;
     width: 150px;
     height: 60px;
     font-size: 25px;
-    font-family: 'Lobster', cursive;
+    font-family: "Lobster", cursive;
     margin-right: 30px;
+    border: 2px solid transparent;
+    box-shadow: 5px 5px 10px 0px #171452;
     opacity: 0;
     transition: opacity 2s;
-    &:hover{
+    &:hover {
         border-top: 2px solid #ffe4c4;
         border-left: 2px solid #ffe4c4;
         background-color: #ffe4c4;
-    }}
-    @media only screen and (max-width: 600px) {
-        .game__checkButton {
-            width: 60px;
-            height: 30px;
-            font-size: 10px;
-            margin-right: unset;
-            margin-top: 10px;
-        }
-      }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .game__checkButton {
+        width: 60px;
+        height: 30px;
+        font-size: 10px;
+        margin-right: unset;
+        margin-top: 10px;
+    }
+}
 .game__introduction {
     display: flex;
     width: 100%;
@@ -63,18 +68,18 @@ html {
     .game__introduction {
         flex-direction: column;
     }
-  }
-.game__title{
+}
+.game__title {
     padding-left: 30px;
     text-shadow: 3px 1px 5px rgb(220, 204, 133);
 }
 @media only screen and (max-width: 600px) {
-    .game__title{
+    .game__title {
         padding: 5px;
         font-size: 35px;
     }
-  }
-.game__level{
+}
+.game__level {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -82,13 +87,13 @@ html {
     width: 100%;
 }
 @media only screen and (max-width: 600px) {
-    .game__level{
+    .game__level {
         font-size: 10px;
         margin-top: 50px;
         padding-right: 0px;
     }
-  }
-.money{
+}
+.money {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,11 +101,11 @@ html {
     padding: 10px;
 }
 @media only screen and (max-width: 600px) {
-    .money{
+    .money {
         max-width: 100%;
     }
-  }
-.game__command{
+}
+.game__command {
     width: 100%;
     height: 100px;
     display: flex;
@@ -111,11 +116,11 @@ html {
     font-size: 18px;
 }
 @media only screen and (max-width: 600px) {
-    .game__command{
+    .game__command {
         max-height: min-content;
         font-size: 14px;
     }
-  }
+}
 .game__amount {
     margin-right: 20px;
     font-size: 30px;
@@ -125,7 +130,7 @@ html {
         font-size: 20px;
         margin-right: 0px;
     }
-  }
+}
 .main {
     width: 100%;
     display: flex;
@@ -133,18 +138,18 @@ html {
     justify-content: space-between;
     align-items: center;
 }
-.gameInfo{
+.gameInfo {
     font-size: 15px;
 }
 @media only screen and (max-width: 600px) {
     .main {
-      display: unset;
+        display: unset;
     }
-    .gameInfo{
+    .gameInfo {
         font-size: 10px;
         text-align: justify;
     }
-  }
+}
 .coins__container {
     width: 25vw;
     height: 20vw;
@@ -162,11 +167,12 @@ html {
         min-height: 100px;
         flex-direction: row;
     }
-  }
+}
 .coins__tile {
     position: relative;
-    width: 6vw;
-    height: 6vw;
+    width: 4vw;
+    height: 4vw;
+    margin: 2px;
     animation: showCoins 3s;
 }
 @media only screen and (max-width: 600px) {
@@ -174,10 +180,14 @@ html {
         width: 10vw;
         height: 10vw;
     }
-  }
-@keyframes showCoins{
-    0%{opacity:0;}
-    100%{opacity:1;}
+}
+@keyframes showCoins {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 .coin {
     position: absolute;
@@ -188,7 +198,7 @@ html {
     cursor: grab;
     touch-action: none;
 }
-.coin:hover{
+.coin:hover {
     transform: scale(1.1);
 }
 @media only screen and (max-width: 600px) {
@@ -196,7 +206,7 @@ html {
         width: 9vw;
         height: 9vw;
     }
-  }
+}
 .pig {
     width: 20vw;
     height: 20vw;
@@ -218,7 +228,7 @@ html {
         right: unset;
         margin-bottom: 40px;
     }
-  }
+}
 .shadow {
     box-shadow: 0px 0px 25px grey;
 }
@@ -254,6 +264,7 @@ html {
     align-items: center;
     text-align: center;
     background: #f1e1e1;
+    box-shadow: 5px 5px 30px 0px #6f8493;
     -webkit-border-radius: 53px;
     -moz-border-radius: 53px;
     border-radius: 53px;
@@ -284,7 +295,7 @@ html {
             left: 60%;
         }
     }
-  }
+}
 .animation {
     animation: display 4s;
 }
@@ -296,49 +307,52 @@ html {
         opacity: 1;
     }
 }
-.game__easyButton{
+.game__easyButton {
     @extend .button;
     background-color: #1bda1b;
-&:hover{
-    border: 2px solid #050e8d;
-}}
-.game__mediumButton{
+    &:hover {
+        border: 2px solid green;
+    }
+}
+.game__mediumButton {
     @extend .button;
     background-color: #faf601;
-    &:hover{
-        border: 2px solid #050e8d;
-    }}
-.game__hardButton{
+    &:hover {
+        border: 2px solid #ffc400;
+    }
+}
+.game__hardButton {
     @extend .button;
     background-color: #ff0000;
-    &:hover{
-        border: 2px solid #050e8d;
-    }}
-.pig__promptButton{
+    &:hover {
+        border: 2px solid #af0202;
+    }
+}
+.pig__promptButton {
     width: 7vw;
     height: 7vw;
     cursor: pointer;
     position: absolute;
-    top:-50%;
+    top: -50%;
     left: -70%;
     display: none;
 }
-@media only screen and (max-width: 600px){
-    .pig__promptButton{
+@media only screen and (max-width: 600px) {
+    .pig__promptButton {
         top: -35%;
-    left: -63%;
+        left: -63%;
     }
 }
-.easy{
+.easy {
     display: none;
 }
-.medium{
+.medium {
     display: none;
 }
-.hard{
+.hard {
     display: none;
 }
-.footer{
+.footer {
     position: fixed;
     right: 0;
     bottom: 0;

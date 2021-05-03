@@ -16,7 +16,7 @@ html {
   overflow-x: hidden;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#0143a7), to(#d0dcf7));
   background-image: linear-gradient(#0143a7, #d0dcf7);
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 20px;
   min-height: 100vh;
   height: -webkit-min-content;
@@ -28,8 +28,11 @@ html {
   cursor: pointer;
   width: 80px;
   height: 50px;
+  border: 2px solid transparent;
   border-radius: 50%;
   font-weight: bold;
+  -webkit-box-shadow: 5px 5px 10px 0px #706f7c;
+          box-shadow: 5px 5px 10px 0px #706f7c;
   outline: none;
 }
 
@@ -44,8 +47,11 @@ html {
   width: 150px;
   height: 60px;
   font-size: 25px;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   margin-right: 30px;
+  border: 2px solid transparent;
+  -webkit-box-shadow: 5px 5px 10px 0px #171452;
+          box-shadow: 5px 5px 10px 0px #171452;
   opacity: 0;
   -webkit-transition: opacity 2s;
   transition: opacity 2s;
@@ -247,8 +253,9 @@ html {
 
 .coins__tile {
   position: relative;
-  width: 6vw;
-  height: 6vw;
+  width: 4vw;
+  height: 4vw;
+  margin: 2px;
   -webkit-animation: showCoins 3s;
           animation: showCoins 3s;
 }
@@ -379,6 +386,8 @@ html {
           align-items: center;
   text-align: center;
   background: #f1e1e1;
+  -webkit-box-shadow: 5px 5px 30px 0px #6f8493;
+          box-shadow: 5px 5px 30px 0px #6f8493;
   border-radius: 53px;
   opacity: 0;
 }
@@ -439,7 +448,7 @@ html {
 }
 
 .game__easyButton:hover {
-  border: 2px solid #050e8d;
+  border: 2px solid green;
 }
 
 .game__mediumButton {
@@ -447,7 +456,7 @@ html {
 }
 
 .game__mediumButton:hover {
-  border: 2px solid #050e8d;
+  border: 2px solid #ffc400;
 }
 
 .game__hardButton {
@@ -455,7 +464,7 @@ html {
 }
 
 .game__hardButton:hover {
-  border: 2px solid #050e8d;
+  border: 2px solid #af0202;
 }
 
 .pig__promptButton {
